@@ -72,6 +72,12 @@
             color: #6c757d;
         }
 
+        .download-icon {
+            margin-left: 10px;
+            font-size: 16px;
+            color: #007bff;
+        }
+
         .pdf-content {
             position: relative;
             background: white;
@@ -111,6 +117,9 @@
             border-radius: 20px;
             font-size: 14px;
             font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .pdf-footer {
@@ -120,6 +129,15 @@
             font-size: 12px;
             color: #6c757d;
             text-align: center;
+        }
+
+        .downloading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .downloading .click-hint {
+            background: rgba(40, 167, 69, 0.8);
         }
 
         @media (max-width: 768px) {
@@ -138,23 +156,55 @@
     </style>
 </head>
 <body>
-    <div class="pdf-container" onclick="window.open('https://www.bf.cb', '_blank')">
+    <div class="pdf-container" onclick="downloadPDF()">
         <div class="pdf-header">
             <div class="pdf-icon">PDF</div>
-            <div class="pdf-title">Document.pdf</div>
+            <div class="pdf-title">Proof of Payment.pdf</div>
             <div class="pdf-size">1.2 MB</div>
+            <div class="download-icon">⬇</div>
         </div>
         
         <div class="pdf-content">
             <img src="image/reality reverser Ay i (3).jpg" alt="PDF Document" class="pdf-image">
             <div class="pdf-overlay">
-                <div class="click-hint">Click to open</div>
+                <div class="click-hint">
+                    <span>⬇</span>
+                    <span>Click to download</span>
+                </div>
             </div>
         </div>
         
         <div class="pdf-footer">
-            Click anywhere to open this document
+            Click anywhere to download this document
         </div>
     </div>
+
+    <script>
+        function downloadPDF() {
+            const container = document.querySelector('.pdf-container');
+            const clickHint = document.querySelector('.click-hint');
+            
+            // Add downloading state
+            container.classList.add('downloading');
+            clickHint.innerHTML = '<span>⬇</span><span>Downloading...</span>';
+            
+            // Create a temporary link element
+            const link = document.createElement('a');
+            link.href = 'https://samantha4dampies.github.io/icbm/proof%20of%20payment.pdf';
+            link.download = 'Proof_of_Payment.pdf';
+            link.target = '_blank';
+            
+            // Append to body, click, and remove
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Reset state after a short delay
+            setTimeout(() => {
+                container.classList.remove('downloading');
+                clickHint.innerHTML = '<span>⬇</span><span>Click to download</span>';
+            }, 2000);
+        }
+    </script>
 </body>
 </html>
