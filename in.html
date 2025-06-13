@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pdf-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            max-width: 800px;
+            width: 100%;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .pdf-container:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .pdf-header {
+            background: #f8f9fa;
+            padding: 12px 20px;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pdf-icon {
+            width: 24px;
+            height: 24px;
+            background: #dc3545;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .pdf-title {
+            font-size: 14px;
+            color: #495057;
+            font-weight: 500;
+        }
+
+        .pdf-size {
+            margin-left: auto;
+            font-size: 12px;
+            color: #6c757d;
+        }
+
+        .pdf-content {
+            position: relative;
+            background: white;
+        }
+
+        .pdf-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            min-height: 600px;
+            object-fit: cover;
+        }
+
+        .pdf-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .pdf-container:hover .pdf-overlay {
+            opacity: 1;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .click-hint {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .pdf-footer {
+            background: #f8f9fa;
+            padding: 8px 20px;
+            border-top: 1px solid #e9ecef;
+            font-size: 12px;
+            color: #6c757d;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .pdf-header {
+                padding: 10px 15px;
+            }
+            
+            .pdf-title {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="pdf-container" onclick="window.open('https://www.bf.cb', '_blank')">
+        <div class="pdf-header">
+            <div class="pdf-icon">PDF</div>
+            <div class="pdf-title">Document.pdf</div>
+            <div class="pdf-size">1.2 MB</div>
+        </div>
+        
+        <div class="pdf-content">
+            <img src="image/reality reverser Ay i (3).jpg" alt="PDF Document" class="pdf-image">
+            <div class="pdf-overlay">
+                <div class="click-hint">Click to open</div>
+            </div>
+        </div>
+        
+        <div class="pdf-footer">
+            Click anywhere to open this document
+        </div>
+    </div>
+</body>
+</html>
